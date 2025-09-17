@@ -1,8 +1,8 @@
 package com.example.umc9th.domain.user.entity.mapping;
 
 
-import com.example.umc9th.domain.user.entity.Food;
-import com.example.umc9th.domain.user.entity.User;
+import com.example.umc9th.domain.user.entity.Term;
+import com.example.umc9th.domain.user.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,8 +11,8 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "user_food")
-public class UserFood {
+@Table(name = "member_term")
+public class MemberTerm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,9 @@ public class UserFood {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "food_id")
-    private Food food;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "term_id")
+    private Term term;
 }
