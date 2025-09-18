@@ -15,6 +15,6 @@ public class MemberQueryService {
     public String QueryTest(
         String name
     ) {
-        return memberRepository.findActiveMember(name).getFirst().getName();
+        return memberRepository.findActiveMember(name).get(0).getName();
     }
 }
