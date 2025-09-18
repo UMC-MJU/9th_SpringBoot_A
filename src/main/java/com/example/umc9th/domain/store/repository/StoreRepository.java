@@ -1,4 +1,4 @@
 package com.example.umc9th.domain.store.repository;
 
-public class StoreRepository {
+public interface StoreRepository {
 }

@@ -1,8 +1,8 @@
-package com.example.umc9th.domain.user.entity;
+package com.example.umc9th.domain.member.entity;
 
 
+import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.domain.store.enums.Address;
-import com.example.umc9th.domain.user.enums.Gender;
 import com.example.umc9th.global.auth.enums.SocialType;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "user")
-public class User extends BaseEntity {
+@Table(name = "member")
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
