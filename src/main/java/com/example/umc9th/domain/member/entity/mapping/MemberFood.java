@@ -1,8 +1,8 @@
-package com.example.umc9th.domain.user.entity.mapping;
+package com.example.umc9th.domain.member.entity.mapping;
 
 
-import com.example.umc9th.domain.user.entity.Food;
-import com.example.umc9th.domain.user.entity.Member;
+import com.example.umc9th.domain.member.entity.Food;
+import com.example.umc9th.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
