@@ -67,7 +67,7 @@ public class Member extends BaseEntity {
 	@Builder.Default
 	private Boolean phone_certificated = false;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "inactive_status", nullable = false)
 	@Builder.Default
 	private Boolean inactiveStatus = false;
 
