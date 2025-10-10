@@ -1,6 +1,5 @@
-package com.example.umc9th.domain.notification.entity;
+package com.example.umc9th.domain.member.entity;
 
-import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.notification.enums.NotificationType;
 
 import jakarta.persistence.Column;
