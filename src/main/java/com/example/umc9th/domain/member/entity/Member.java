@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.example.umc9th.domain.member.enums.Gender;
-import com.example.umc9th.domain.member.enums.MemberStatus;
 import com.example.umc9th.global.entity.BaseEntity;
 import com.example.umc9th.global.entity.Location;
 
@@ -65,15 +64,16 @@ public class Member extends BaseEntity {
 	private String email;
 
 	@Column(name = "phone_certificated", nullable = false)
-	private Boolean phone_certificated;
+	@Builder.Default
+	private Boolean phone_certificated = false;
 
 	@Column(name = "status", nullable = false)
-	@Enumerated(EnumType.STRING)
 	@Builder.Default
-	private MemberStatus status = MemberStatus.INACTIVE;
+	private Boolean inactiveStatus = false;
 
-	@Column(name = "inactive_date", nullable = false)
-	private LocalDateTime inactiveDate;
+	@Column(name = "inactive_date")
+	@Builder.Default
+	private LocalDateTime inactiveDate = null;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "location_id")
