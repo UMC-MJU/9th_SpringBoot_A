@@ -1,5 +1,7 @@
 package com.example.umc9th.domain.shop.entity;
 
+import java.time.LocalDateTime;
+
 import com.example.umc9th.global.entity.BaseEntity;
 import com.example.umc9th.global.entity.Location;
 
@@ -38,6 +40,14 @@ public class Shop extends BaseEntity {
 
 	@Column(name = "detail_address", length = 100, nullable = false)
 	private String detailAddress;
+
+	@Column(name = "inactive_status", nullable = false)
+	@Builder.Default
+	private Boolean inactiveStatus = false;
+
+	@Column(name = "inactive_date")
+	@Builder.Default
+	private LocalDateTime inactiveDate = null;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "location_id")
