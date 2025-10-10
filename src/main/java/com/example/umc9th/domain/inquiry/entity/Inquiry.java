@@ -6,6 +6,7 @@ import com.example.umc9th.domain.inquiry.enums.InquiryStatus;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.global.entity.BaseEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -54,6 +55,6 @@ public class Inquiry extends BaseEntity {
 	@JoinColumn(name = "member_id")
 	private Member member;
 
-	@OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<InquiryImage> inquiryImages;
 }
