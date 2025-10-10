@@ -1,11 +1,13 @@
 package com.example.umc9th.domain.review.entity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.shop.entity.Shop;
 import com.example.umc9th.global.entity.BaseEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -46,4 +49,10 @@ public class Review extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
+
+	@OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<ReviewImage> reviewImages;
+
+	@OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<Reply> replies;
 }
