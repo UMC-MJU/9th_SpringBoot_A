@@ -2,6 +2,8 @@ package com.example.umc9th.domain.notification.entity;
 
 import java.util.List;
 
+import org.hibernate.annotations.BatchSize;
+
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.notification.entity.mapping.InquiryAnswer;
 import com.example.umc9th.domain.notification.entity.mapping.NewMission;
@@ -32,6 +34,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name = "notification")
+@BatchSize(size = 30)
 public class Notification extends BaseEntity {
 
 	@Id

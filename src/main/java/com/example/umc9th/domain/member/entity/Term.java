@@ -3,6 +3,7 @@ package com.example.umc9th.domain.member.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.BatchSize;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.example.umc9th.domain.member.entity.mapping.TermMember;
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name = "term")
+@BatchSize(size = 100)
 public class Term {
 
 	@Id
