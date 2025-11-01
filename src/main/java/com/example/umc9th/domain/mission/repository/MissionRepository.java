@@ -11,8 +11,8 @@ import com.example.umc9th.domain.mission.enums.MissionStatus;
 public interface MissionRepository extends JpaRepository<Mission, Long> {
 	@Query("""
 	SELECT m
-	FROM MissionMember mm
-	JOIN FETCH mm.mission m
+	FROM Mission m
+	JOIN FETCH m.missionMembers mm
 	JOIN FETCH m.shop
 	WHERE mm.member.id = :memberId
 	AND mm.status = :status
