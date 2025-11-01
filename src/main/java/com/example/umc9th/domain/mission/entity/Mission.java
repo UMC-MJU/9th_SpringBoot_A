@@ -1,8 +1,14 @@
 package com.example.umc9th.domain.mission.entity;
 
+import java.util.List;
+
+import org.hibernate.annotations.BatchSize;
+
+import com.example.umc9th.domain.mission.entity.mapping.MissionMember;
 import com.example.umc9th.domain.shop.entity.Shop;
 import com.example.umc9th.global.entity.BaseEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,6 +31,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name = "mission")
+@BatchSize(size = 50)
 public class Mission extends BaseEntity {
 
 	@Id
@@ -41,4 +49,7 @@ public class Mission extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
+
+	@OneToMany(mappedBy = "mission", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<MissionMember> missionMembers;
 }
