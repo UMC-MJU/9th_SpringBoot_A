@@ -3,6 +3,7 @@ package com.example.umc9th.domain.mission.entity.mapping;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.mission.enums.MissionStatus;
+import com.example.umc9th.global.entity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name = "mission_member")
-public class MissionMember {
+public class MissionMember extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
