@@ -21,4 +21,22 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 	LIMIT :count
 """)
 	List<Mission> findMissionsByMissionStatus(MissionStatus status, long memberId, long cursor, long count);
+
+	@Query("""
+	SELECT m
+    FROM Mission m
+    JOIN FETCH m.shop s
+    JOIN FETCH s.location l
+    WHERE l.id = :locationId
+	AND NOT EXISTS (
+        SELECT 1
+        FROM MissionMember mm
+        WHERE mm.member.id = :memberId
+        AND mm.mission = m
+    )
+	AND m.id < :cursor
+	ORDER BY m.createdAt DESC, m.id DESC
+	LIMIT :count
+""")
+	List<Mission> findAvailableMissionsByLocation(long locationId, long memberId, long cursor, long count);
 }
