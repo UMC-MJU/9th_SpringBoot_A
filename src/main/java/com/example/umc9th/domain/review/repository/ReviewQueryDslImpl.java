@@ -9,13 +9,12 @@ import com.example.umc9th.domain.review.entity.Review;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
 public class ReviewQueryDslImpl implements ReviewQueryDsl{
-	private final EntityManager em;
+	private final JPAQueryFactory queryFactory;
 
 	@Override
 	public List<Review> searchReview(
@@ -23,8 +22,6 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl{
 		String type,
 		String query
 	) {
-		JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-
 		QReview review = QReview.review;
 
 		BooleanBuilder builder = new BooleanBuilder();
