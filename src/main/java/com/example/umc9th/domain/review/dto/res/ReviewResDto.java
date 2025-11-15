@@ -21,10 +21,6 @@ public class ReviewResDto {
 		private final ReplyResDto.Searching reply;
 
 		public static ReviewResDto.Searching from(Review review) {
-			if (review == null) {
-				return null;
-			}
-
 			return ReviewResDto.Searching.builder()
 				.memberName(review.getMember().getName())
 				.score(review.getScore())
