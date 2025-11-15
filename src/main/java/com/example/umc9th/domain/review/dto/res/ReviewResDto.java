@@ -9,27 +9,29 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
-@Builder
-@RequiredArgsConstructor
 public class ReviewResDto {
-	private final String memberName;
-	private final BigDecimal score;
-	private final LocalDateTime createdAt;
-	private final String content;
-	private final ReplyResDto reply;
+	@Getter
+	@Builder
+	@RequiredArgsConstructor
+	public static class Searching {
+		private final String memberName;
+		private final BigDecimal score;
+		private final LocalDateTime createdAt;
+		private final String content;
+		private final ReplyResDto.Searching reply;
 
-	public static ReviewResDto from(Review review) {
-		if (review == null) {
-			return null;
+		public static ReviewResDto.Searching from(Review review) {
+			if (review == null) {
+				return null;
+			}
+
+			return ReviewResDto.Searching.builder()
+				.memberName(review.getMember().getName())
+				.score(review.getScore())
+				.createdAt(review.getCreatedAt())
+				.content(review.getContent())
+				.reply(ReplyResDto.Searching.from(review.getReply()))
+				.build();
 		}
-
-		return ReviewResDto.builder()
-			.memberName(review.getMember().getName())
-			.score(review.getScore())
-			.createdAt(review.getCreatedAt())
-			.content(review.getContent())
-			.reply(ReplyResDto.from(review.getReply()))
-			.build();
 	}
 }

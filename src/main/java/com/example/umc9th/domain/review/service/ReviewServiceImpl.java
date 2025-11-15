@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.umc9th.domain.review.converter.ReviewConverter;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
@@ -18,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
 	private final ReviewRepository reviewRepository;
 
 	@Override
-	public List<ReviewResDto> searchReview(
+	public List<ReviewResDto.Searching> searchReview(
 		long memberId,
 		String type,
 		String query
@@ -39,7 +40,7 @@ public class ReviewServiceImpl implements ReviewService {
 		List<Review> reviewList = reviewRepository.searchReview(builder);
 
 		return reviewList.stream()
-			.map(ReviewResDto::from)
+			.map(ReviewConverter::toSearchingDto)
 			.toList();
 	}
 }
