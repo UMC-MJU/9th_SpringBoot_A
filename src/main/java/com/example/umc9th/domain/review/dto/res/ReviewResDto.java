@@ -34,4 +34,18 @@ public class ReviewResDto {
 				.build();
 		}
 	}
+
+
+	@Getter
+	@Builder
+	@RequiredArgsConstructor
+	public static class Exception {
+		private final String testString;
+
+		public static ReviewResDto.Exception from(String testing) {
+			return ReviewResDto.Exception.builder()
+				.testString(testing)
+				.build();
+		}
+	}
 }

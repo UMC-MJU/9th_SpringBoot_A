@@ -1,4 +1,4 @@
-package com.example.umc9th.domain.review.service;
+package com.example.umc9th.domain.review.service.query;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ import com.example.umc9th.domain.review.converter.ReviewConverter;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
+import com.example.umc9th.domain.review.exception.ReviewException;
+import com.example.umc9th.domain.review.exception.code.ReviewErrorCode;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
 import com.querydsl.core.BooleanBuilder;
 
@@ -15,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewServiceImpl implements ReviewService {
+public class ReviewQueryServiceImpl implements ReviewQueryService {
 	private final ReviewRepository reviewRepository;
 
 	@Override
@@ -42,5 +44,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewList.stream()
 			.map(ReviewConverter::toSearchingDto)
 			.toList();
+	}
+
+	@Override
+	public void checkFlag(Long flag) {
+		if (flag == 1) {
+			throw new ReviewException(ReviewErrorCode.TEST_EXCEPTION);
+		}
 	}
 }
