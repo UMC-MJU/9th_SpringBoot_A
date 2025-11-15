@@ -3,6 +3,7 @@ package com.example.umc9th.domain.review.service.query;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.umc9th.domain.review.converter.ReviewConverter;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class ReviewQueryServiceImpl implements ReviewQueryService {
 	private final ReviewRepository reviewRepository;
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<ReviewResDto.Searching> searchReview(
 		long memberId,
