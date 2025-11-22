@@ -2,6 +2,7 @@ package com.example.umc9th.domain.shop.service.command;
 
 import org.springframework.stereotype.Service;
 
+import com.example.umc9th.domain.shop.converter.ShopConverter;
 import com.example.umc9th.domain.shop.dto.req.ShopReqDto;
 import com.example.umc9th.domain.shop.entity.Shop;
 import com.example.umc9th.domain.shop.exception.ShopException;
@@ -33,7 +34,7 @@ public class ShopCommandServiceImpl implements ShopCommandService {
 			throw new ShopException(ShopErrorCode.EXIST_SHOP_ADDRESS);
 		}
 
-		Shop shop = shopReqDto.toEntity(location);
+		Shop shop = ShopConverter.toShop(shopReqDto, location);
 		shopRepository.save(shop);
 	}
 }

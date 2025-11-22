@@ -42,7 +42,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 			throw new MissionException(MissionErrorCode.EXIST_MISSION);
 		}
 
-		Mission mission = missionReqDto.toEntity(shop);
+		Mission mission = MissionConverter.toMission(missionReqDto, shop);
 		missionRepository.save(mission);
 	}
 
