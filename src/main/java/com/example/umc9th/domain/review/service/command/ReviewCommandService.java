@@ -7,5 +7,5 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 
 public interface ReviewCommandService {
-	void addReview(ReviewReqDto.AddReview reviewReqDto, List<MultipartFile> imageList);
+	void createReview(ReviewReqDto.AddReview reviewReqDto, List<MultipartFile> imageList);
 }

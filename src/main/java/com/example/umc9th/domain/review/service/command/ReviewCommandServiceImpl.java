@@ -48,7 +48,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
 
 	@Override
 	@Transactional
-	public void addReview(ReviewReqDto.AddReview reviewReqDto, List<MultipartFile> imageList) {
+	public void createReview(ReviewReqDto.AddReview reviewReqDto, List<MultipartFile> imageList) {
 		Member member = memberRepository.findById(reviewReqDto.getMemberId())
 			.orElseThrow(() -> new MemberException(MemberErrorCode.BAD_REQUEST));
 
@@ -58,10 +58,10 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
 		Review review = ReviewConverter.toReview(reviewReqDto, member, shop);
 		reviewRepository.save(review);
 
-		addReviewImageList(review, imageList);
+		createReviewImageList(review, imageList);
 	}
 
-	private void addReviewImageList(Review review, List<MultipartFile> imageList) {
+	private void createReviewImageList(Review review, List<MultipartFile> imageList) {
 
 		List<Uuid> uuidList = IntStream.range(0, imageList.size())
 			.mapToObj(i -> UUID.randomUUID().toString())

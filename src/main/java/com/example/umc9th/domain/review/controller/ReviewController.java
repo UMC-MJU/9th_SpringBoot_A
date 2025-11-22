@@ -41,7 +41,6 @@ public class ReviewController {
 			code,
 			reviewQueryService.searchReview(memberId, type, query)
 		);
-
 	}
 
 	@GetMapping("/exception")
@@ -55,11 +54,11 @@ public class ReviewController {
 	}
 
 	@PostMapping
-	public ApiResponse<Void> addReview(
+	public ApiResponse<Void> createReview(
 		@RequestPart(value = "request") @Valid ReviewReqDto.AddReview reviewReqDto,
 		@RequestPart(value = "image", required = false) List<MultipartFile> imageList
 	) {
-		reviewCommandService.addReview(reviewReqDto, imageList);
+		reviewCommandService.createReview(reviewReqDto, imageList);
 
 		GeneralSuccessCode code = GeneralSuccessCode.CREATED;
 		return ApiResponse.onSuccess(

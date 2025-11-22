@@ -2,7 +2,7 @@ package com.example.umc9th.domain.shop.validator;
 
 import org.springframework.stereotype.Component;
 
-import com.example.umc9th.domain.shop.annotation.ExistShop;
+import com.example.umc9th.domain.shop.annotation.ExistShops;
 import com.example.umc9th.domain.shop.exception.code.ShopErrorCode;
 import com.example.umc9th.domain.shop.repository.ShopRepository;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class ShopExistValidator implements ConstraintValidator<ExistShop, Long> {
+public class ShopExistValidator implements ConstraintValidator<ExistShops, Long> {
 
 	private final ShopRepository shopRepository;
 

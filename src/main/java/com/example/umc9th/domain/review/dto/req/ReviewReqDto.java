@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.review.entity.Review;
-import com.example.umc9th.domain.shop.annotation.ExistShop;
+import com.example.umc9th.domain.shop.annotation.ExistShops;
 import com.example.umc9th.domain.shop.entity.Shop;
 
 import jakarta.validation.constraints.Max;
@@ -32,7 +32,7 @@ public class ReviewReqDto {
 		@ExistMembers
 		private long memberId;
 
-		@ExistShop
+		@ExistShops
 		private long shopId;
 
 		public Review toEntity(Member member, Shop shop) {
