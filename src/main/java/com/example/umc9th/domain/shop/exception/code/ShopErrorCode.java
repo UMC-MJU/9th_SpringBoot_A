@@ -11,6 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ShopErrorCode implements BaseErrorCode {
 	BAD_REQUEST(HttpStatus.BAD_REQUEST, "SHOP400_1", "해당하는 가게를 찾을 수 없습니다."),
+	EXIST_SHOP_ADDRESS(HttpStatus.BAD_REQUEST, "SHOP400_2", "이미 같은 위치에 존재하는 가게가 있습니다."),
 	;
 
 	private final HttpStatus status;
