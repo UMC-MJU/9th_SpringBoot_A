@@ -39,4 +39,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 	LIMIT :count
 """)
 	List<Mission> findAvailableMissionsByLocation(long locationId, long memberId, long cursor, long count);
+
+	boolean existsByMinAmountAndRewardAndShopId(long minAmount, long reward, long shopId);
 }
