@@ -4,4 +4,6 @@ import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
 
 public interface MissionCommandService {
 	void createMission(MissionReqDto.CreateMission missionReqDto);
+
+	void challengeMission(long missionId, long memberId);
 }

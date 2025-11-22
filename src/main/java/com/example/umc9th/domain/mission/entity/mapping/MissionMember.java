@@ -39,7 +39,7 @@ public class MissionMember extends BaseEntity {
 	@Builder.Default
 	private MissionStatus status = MissionStatus.PROGRESS;
 
-	@Column(name = "owner_num", length = 15, nullable = false)
+	@Column(name = "owner_num", length = 15)
 	private String ownerNum;
 
 	@ManyToOne(fetch = FetchType.LAZY)
