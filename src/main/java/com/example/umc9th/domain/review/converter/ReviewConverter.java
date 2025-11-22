@@ -16,7 +16,7 @@ public class ReviewConverter {
 		return ReviewResDto.Exception.from(testing);
 	}
 
-	public static Review toReview(ReviewReqDto.AddReview reviewReqDto, Member member, Shop shop) {
+	public static Review toReview(ReviewReqDto.CreateReview reviewReqDto, Member member, Shop shop) {
 		return reviewReqDto.toEntity(member, shop);
 	}
 }

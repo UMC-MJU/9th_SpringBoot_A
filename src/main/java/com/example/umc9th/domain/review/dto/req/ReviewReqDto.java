@@ -20,7 +20,7 @@ public class ReviewReqDto {
 	@Getter
 	@AllArgsConstructor
 	@NoArgsConstructor
-	public static class AddReview {
+	public static class CreateReview {
 
 		@Min(0)
 		@Max(5)

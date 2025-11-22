@@ -55,7 +55,7 @@ public class ReviewController {
 
 	@PostMapping
 	public ApiResponse<Void> createReview(
-		@RequestPart(value = "request") @Valid ReviewReqDto.AddReview reviewReqDto,
+		@RequestPart(value = "request") @Valid ReviewReqDto.CreateReview reviewReqDto,
 		@RequestPart(value = "image", required = false) List<MultipartFile> imageList
 	) {
 		reviewCommandService.createReview(reviewReqDto, imageList);

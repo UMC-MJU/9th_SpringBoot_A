@@ -48,7 +48,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
 
 	@Override
 	@Transactional
-	public void createReview(ReviewReqDto.AddReview reviewReqDto, List<MultipartFile> imageList) {
+	public void createReview(ReviewReqDto.CreateReview reviewReqDto, List<MultipartFile> imageList) {
 		Member member = memberRepository.findById(reviewReqDto.getMemberId())
 			.orElseThrow(() -> new MemberException(MemberErrorCode.BAD_REQUEST));
 
