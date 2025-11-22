@@ -11,6 +11,7 @@ import com.example.umc9th.domain.shop.entity.Shop;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class ReviewReqDto {
 		private BigDecimal score;
 
 		@NotBlank
+		@Size(max = 255, message = "내용은 255자 이하여야 합니다.")
 		private String content;
 
 		@ExistMembers
