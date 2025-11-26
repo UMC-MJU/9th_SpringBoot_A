@@ -66,4 +66,16 @@ public class ReviewController {
 			null
 		);
 	}
+
+	@GetMapping("/my")
+	public ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
+		@RequestParam("member-id") @ExistMembers long memberId
+	) {
+		GeneralSuccessCode code = GeneralSuccessCode.OK;
+
+		return ApiResponse.onSuccess(
+			code,
+			reviewQueryService.findReviewByMember(memberId)
+		);
+	}
 }

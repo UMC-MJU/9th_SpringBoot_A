@@ -20,17 +20,16 @@ public class ReviewResDto {
 		private final String content;
 		private final ReplyResDto.Searching reply;
 
-		public static ReviewResDto.Searching from(Review review) {
+		public static ReviewResDto.Searching of(Review review, ReplyResDto.Searching replyDto) {
 			return ReviewResDto.Searching.builder()
 				.memberName(review.getMember().getName())
 				.score(review.getScore())
 				.createdAt(review.getCreatedAt())
 				.content(review.getContent())
-				.reply(ReplyResDto.Searching.from(review.getReply()))
+				.reply(replyDto)
 				.build();
 		}
 	}
-
 
 	@Getter
 	@Builder
@@ -41,6 +40,29 @@ public class ReviewResDto {
 		public static ReviewResDto.Exception from(String testing) {
 			return ReviewResDto.Exception.builder()
 				.testString(testing)
+				.build();
+		}
+	}
+
+	@Getter
+	@Builder
+	@RequiredArgsConstructor
+	public static class MyReview {
+		private final String shopName;
+		private final String memberName;
+		private final BigDecimal score;
+		private final LocalDateTime createdAt;
+		private final String content;
+		private final ReplyResDto.MyReview reply;
+
+		public static ReviewResDto.MyReview of(Review review, ReplyResDto.MyReview replyDto) {
+			return ReviewResDto.MyReview.builder()
+				.shopName(review.getShop().getName())
+				.memberName(review.getMember().getName())
+				.score(review.getScore())
+				.createdAt(review.getCreatedAt())
+				.content(review.getContent())
+				.reply(replyDto)
 				.build();
 		}
 	}

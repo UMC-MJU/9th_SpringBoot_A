@@ -39,4 +39,16 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 			throw new ReviewException(ReviewErrorCode.TEST_EXCEPTION);
 		}
 	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<ReviewResDto.MyReview> findReviewByMember(
+		long memberId
+	) {
+		List<Review> reviewList = reviewRepository.findAllByMemberId(memberId);
+
+		return reviewList.stream()
+			.map(ReviewConverter::toMyReviewDto)
+			.toList();
+	}
 }

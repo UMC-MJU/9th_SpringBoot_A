@@ -18,11 +18,22 @@ public class ReplyResDto {
 		private final String content;
 
 		public static ReplyResDto.Searching from(Reply reply) {
-			if (reply == null) {
-				return null;
-			}
-
 			return ReplyResDto.Searching.builder()
+				.createdAt(reply.getCreatedAt())
+				.content(reply.getContent())
+				.build();
+		}
+	}
+
+	@Getter
+	@Builder
+	@RequiredArgsConstructor
+	public static class MyReview {
+		private final LocalDateTime createdAt;
+		private final String content;
+
+		public static ReplyResDto.MyReview from(Reply reply) {
+			return ReplyResDto.MyReview.builder()
 				.createdAt(reply.getCreatedAt())
 				.content(reply.getContent())
 				.build();
