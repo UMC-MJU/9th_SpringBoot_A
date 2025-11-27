@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
+import com.example.umc9th.domain.mission.exception.code.MissionSuccessCode;
 import com.example.umc9th.domain.mission.service.command.MissionCommandService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
-import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class MissionController implements MissionControllerDocs{
 	) {
 		missionCommandService.createMission(missionReqDto);
 
-		GeneralSuccessCode code = GeneralSuccessCode.CREATED;
+		MissionSuccessCode code = MissionSuccessCode.CREATED;
 		return ApiResponse.onSuccess(
 			code,
 			null
@@ -45,7 +45,7 @@ public class MissionController implements MissionControllerDocs{
 	) {
 		missionCommandService.challengeMission(missionId, memberId);
 
-		GeneralSuccessCode code = GeneralSuccessCode.CREATED;
+		MissionSuccessCode code = MissionSuccessCode.CREATED;
 		return ApiResponse.onSuccess(
 			code,
 			null

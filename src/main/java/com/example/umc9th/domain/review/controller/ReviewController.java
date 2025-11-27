@@ -14,10 +14,10 @@ import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.review.converter.ReviewConverter;
 import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
+import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc9th.domain.review.service.command.ReviewCommandService;
 import com.example.umc9th.domain.review.service.query.ReviewQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
-import com.example.umc9th.global.apiPayload.code.GeneralSuccessCode;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class ReviewController implements ReviewControllerDocs{
 		@RequestParam("type") String type,
 		@RequestParam("query") String query
 	) {
-		GeneralSuccessCode code = GeneralSuccessCode.OK;
+		ReviewSuccessCode code = ReviewSuccessCode.OK;
 		return ApiResponse.onSuccess(
 			code,
 			reviewQueryService.searchReview(memberId, type, query)
@@ -50,7 +50,7 @@ public class ReviewController implements ReviewControllerDocs{
 	) {
 		reviewQueryService.checkFlag(flag);
 
-		GeneralSuccessCode code = GeneralSuccessCode.OK;
+		ReviewSuccessCode code = ReviewSuccessCode.OK;
 		return ApiResponse.onSuccess(code, ReviewConverter.toExceptionDTO("This is Test!"));
 	}
 
@@ -62,7 +62,7 @@ public class ReviewController implements ReviewControllerDocs{
 	) {
 		reviewCommandService.createReview(reviewReqDto, imageList);
 
-		GeneralSuccessCode code = GeneralSuccessCode.CREATED;
+		ReviewSuccessCode code = ReviewSuccessCode.CREATED;
 		return ApiResponse.onSuccess(
 			code,
 			null
@@ -74,7 +74,7 @@ public class ReviewController implements ReviewControllerDocs{
 	public ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
 		@RequestParam("member-id") @ExistMembers long memberId
 	) {
-		GeneralSuccessCode code = GeneralSuccessCode.OK;
+		ReviewSuccessCode code = ReviewSuccessCode.OK;
 
 		return ApiResponse.onSuccess(
 			code,
