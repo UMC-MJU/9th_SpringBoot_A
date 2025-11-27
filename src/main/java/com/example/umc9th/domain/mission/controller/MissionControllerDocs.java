@@ -1,8 +1,12 @@
 package com.example.umc9th.domain.mission.controller;
 
+import java.util.List;
+
 import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
+import com.example.umc9th.domain.mission.dto.res.MissionResDto;
+import com.example.umc9th.domain.shop.annotation.ExistShops;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,5 +38,19 @@ public interface MissionControllerDocs {
 	ApiResponse<Void> challengeMission(
 		@ExistMembers long memberId,
 		@ExistMissions long missionId
+	);
+
+	@Operation(
+		summary = "특정 가게의 미션 조회 API",
+		description = "특정 가게에 등록된 모든 미션을 조회합니다.페이지네이션으로 제공"
+	)
+	@ApiResponses({
+		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "등록 성공"),
+		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
+	})
+	ApiResponse<List<MissionResDto.MissionInShop>> findMissionByShop(
+		@ExistShops long shopId,
+		long cursor,
+		long count
 	);
 }

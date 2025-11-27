@@ -41,4 +41,14 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 	List<Mission> findAvailableMissionsByLocation(long locationId, long memberId, long cursor, long count);
 
 	boolean existsByMinAmountAndRewardAndShopId(long minAmount, long reward, long shopId);
+
+	@Query("""
+	SELECT m
+	FROM Mission m
+	WHERE m.shop.id = :shopId
+	AND (:cursor = 0 OR m.id < :cursor)
+	ORDER BY m.updatedAt DESC, m.createdAt DESC
+	LIMIT :count
+""")
+	List<Mission> findAllByShopId(long shopId, long cursor, long count);
 }
