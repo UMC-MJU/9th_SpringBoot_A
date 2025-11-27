@@ -1,12 +1,13 @@
 package com.example.umc9th.domain.mission.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-
+import com.example.umc9th.domain.member.annotation.ExistMembers;
+import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 
 public interface MissionControllerDocs {
 
@@ -18,9 +19,8 @@ public interface MissionControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "등록 성공"),
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
-	@PostMapping
 	ApiResponse<Void> createMission(
-		MissionReqDto.CreateMission missionReqDto
+		@Valid MissionReqDto.CreateMission missionReqDto
 	);
 
 	@Operation(
@@ -31,9 +31,8 @@ public interface MissionControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "등록 성공"),
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
-	@PostMapping("/challenge")
 	ApiResponse<Void> challengeMission(
-		long memberId,
-		long missionId
+		@ExistMembers long memberId,
+		@ExistMissions long missionId
 	);
 }

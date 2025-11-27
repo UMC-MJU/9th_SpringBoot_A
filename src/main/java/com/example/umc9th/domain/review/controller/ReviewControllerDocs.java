@@ -2,15 +2,16 @@ package com.example.umc9th.domain.review.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 
 public interface ReviewControllerDocs {
 
@@ -23,7 +24,7 @@ public interface ReviewControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
 	ApiResponse<List<ReviewResDto.Searching>> searchReview(
-		long memberId,
+		@ExistMembers long memberId,
 		String type,
 		String query
 	);
@@ -37,7 +38,7 @@ public interface ReviewControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
 	ApiResponse<Void> createReview(
-		ReviewReqDto.CreateReview reviewReqDto,
+		@Valid ReviewReqDto.CreateReview reviewReqDto,
 		List<MultipartFile> imageList
 	);
 
@@ -49,8 +50,7 @@ public interface ReviewControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "성공"),
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
-	@GetMapping("/my")
 	ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
-		long memberId
+		@ExistMembers long memberId
 	);
 }

@@ -5,6 +5,7 @@ import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 
 public interface ShopControllerDocs {
 
@@ -17,6 +18,6 @@ public interface ShopControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
 	ApiResponse<Void> createShop(
-		ShopReqDto.CreateShop shopReqDto
+		@Valid ShopReqDto.CreateShop shopReqDto
 	);
 }
