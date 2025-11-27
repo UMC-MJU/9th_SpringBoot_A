@@ -16,10 +16,11 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/shops")
-public class ShopController {
+public class ShopController implements ShopControllerDocs{
 
 	private final ShopCommandService shopCommandService;
 
+	@Override
 	@PostMapping
 	public ApiResponse<Void> createShop(
 		@RequestBody @Valid ShopReqDto.CreateShop shopReqDto

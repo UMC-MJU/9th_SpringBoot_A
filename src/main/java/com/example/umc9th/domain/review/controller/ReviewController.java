@@ -25,11 +25,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/reviews")
-public class ReviewController {
+public class ReviewController implements ReviewControllerDocs{
 
 	private final ReviewQueryService reviewQueryService;
 	private final ReviewCommandService reviewCommandService;
 
+	@Override
 	@GetMapping("/search")
 	public ApiResponse<List<ReviewResDto.Searching>> searchReview(
 		@RequestParam("member-id") @ExistMembers long memberId,
@@ -53,6 +54,7 @@ public class ReviewController {
 		return ApiResponse.onSuccess(code, ReviewConverter.toExceptionDTO("This is Test!"));
 	}
 
+	@Override
 	@PostMapping
 	public ApiResponse<Void> createReview(
 		@RequestPart(value = "request") @Valid ReviewReqDto.CreateReview reviewReqDto,
@@ -67,6 +69,7 @@ public class ReviewController {
 		);
 	}
 
+	@Override
 	@GetMapping("/my")
 	public ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
 		@RequestParam("member-id") @ExistMembers long memberId

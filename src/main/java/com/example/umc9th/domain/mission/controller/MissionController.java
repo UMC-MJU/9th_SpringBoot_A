@@ -19,10 +19,11 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/missions")
-public class MissionController {
+public class MissionController implements MissionControllerDocs{
 
 	private final MissionCommandService missionCommandService;
 
+	@Override
 	@PostMapping
 	public ApiResponse<Void> createMission(
 		@RequestBody @Valid MissionReqDto.CreateMission missionReqDto
@@ -36,6 +37,7 @@ public class MissionController {
 		);
 	}
 
+	@Override
 	@PostMapping("/challenge")
 	public ApiResponse<Void> challengeMission(
 		@RequestParam("memberId") @ExistMembers long memberId,
