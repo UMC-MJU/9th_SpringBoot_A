@@ -2,6 +2,7 @@ package com.example.umc9th.domain.review.service.query;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +44,11 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<ReviewResDto.MyReview> findReviewByMember(
-		long memberId
+		long memberId,
+		Integer page
 	) {
-		List<Review> reviewList = reviewRepository.findAllByMemberId(memberId);
+		PageRequest pageRequest = PageRequest.of(page-1, 10);
+		List<Review> reviewList = reviewRepository.findAllByMemberId(memberId, pageRequest);
 
 		return reviewList.stream()
 			.map(ReviewConverter::toMyReviewDto)

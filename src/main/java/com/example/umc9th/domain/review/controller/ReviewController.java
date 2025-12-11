@@ -17,6 +17,7 @@ import com.example.umc9th.domain.review.dto.res.ReviewResDto;
 import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc9th.domain.review.service.command.ReviewCommandService;
 import com.example.umc9th.domain.review.service.query.ReviewQueryService;
+import com.example.umc9th.global.annotation.OverZeroInteger;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import jakarta.validation.Valid;
@@ -72,13 +73,14 @@ public class ReviewController implements ReviewControllerDocs{
 	@Override
 	@GetMapping("/my")
 	public ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
-		@RequestParam("member-id") @ExistMembers long memberId
+		@RequestParam("member-id") @ExistMembers long memberId,
+		@RequestParam(value = "page", defaultValue = "1") @OverZeroInteger Integer page
 	) {
 		ReviewSuccessCode code = ReviewSuccessCode.OK;
 
 		return ApiResponse.onSuccess(
 			code,
-			reviewQueryService.findReviewByMember(memberId)
+			reviewQueryService.findReviewByMember(memberId, page)
 		);
 	}
 }

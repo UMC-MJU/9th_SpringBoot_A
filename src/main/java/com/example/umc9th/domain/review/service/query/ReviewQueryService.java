@@ -9,5 +9,5 @@ public interface ReviewQueryService {
 
 	void checkFlag(Long flag);
 
-	List<ReviewResDto.MyReview> findReviewByMember(long memberId);
+	List<ReviewResDto.MyReview> findReviewByMember(long memberId, Integer page);
 }

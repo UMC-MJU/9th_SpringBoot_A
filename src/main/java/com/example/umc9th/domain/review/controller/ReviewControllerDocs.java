@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.review.dto.req.ReviewReqDto;
 import com.example.umc9th.domain.review.dto.res.ReviewResDto;
+import com.example.umc9th.global.annotation.OverZeroInteger;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,6 +52,7 @@ public interface ReviewControllerDocs {
 		@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "실패")
 	})
 	ApiResponse<List<ReviewResDto.MyReview>> getMyReview(
-		@ExistMembers long memberId
+		@ExistMembers long memberId,
+		@OverZeroInteger Integer page
 	);
 }
