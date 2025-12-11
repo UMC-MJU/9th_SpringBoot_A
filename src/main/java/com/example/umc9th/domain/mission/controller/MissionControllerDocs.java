@@ -52,8 +52,7 @@ public interface MissionControllerDocs {
 	})
 	ApiResponse<List<MissionResDto.MissionInShop>> findMissionByShop(
 		@ExistShops long shopId,
-		long cursor,
-		long count
+		@OverZeroInteger Integer page
 	);
 
 	@Operation(

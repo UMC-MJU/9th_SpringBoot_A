@@ -2,6 +2,7 @@ package com.example.umc9th.domain.mission.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -42,13 +43,5 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 
 	boolean existsByMinAmountAndRewardAndShopId(long minAmount, long reward, long shopId);
 
-	@Query("""
-	SELECT m
-	FROM Mission m
-	WHERE m.shop.id = :shopId
-	AND (:cursor = 0 OR m.id < :cursor)
-	ORDER BY m.updatedAt DESC, m.createdAt DESC
-	LIMIT :count
-""")
-	List<Mission> findAllByShopId(long shopId, long cursor, long count);
+	List<Mission> findAllByShopId(long shopId, PageRequest pageRequest);
 }

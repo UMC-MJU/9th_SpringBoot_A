@@ -21,8 +21,9 @@ public class MissionQueryServiceImpl implements MissionQueryService{
 	private final MissionMemberRepository missionMemberRepository;
 
 	@Override
-	public List<MissionResDto.MissionInShop> findMissionByShop(long shopId, long cursor, long count) {
-		return missionRepository.findAllByShopId(shopId, cursor, count).stream()
+	public List<MissionResDto.MissionInShop> findMissionByShop(long shopId, Integer page) {
+		PageRequest pageRequest = PageRequest.of(page-1, 10);
+		return missionRepository.findAllByShopId(shopId, pageRequest).stream()
 			.map(MissionConverter::toMissionInShop)
 			.toList();
 	}

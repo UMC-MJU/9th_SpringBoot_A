@@ -65,13 +65,12 @@ public class MissionController implements MissionControllerDocs{
 	@GetMapping("/shops")
 	public ApiResponse<List<MissionResDto.MissionInShop>> findMissionByShop(
 		@RequestParam("shop-id") @ExistShops long shopId,
-		@RequestParam(value = "cursor", defaultValue = "0", required = false) long cursor,
-		@RequestParam(value = "count", defaultValue = "3", required = false) long count
+		@RequestParam(value = "page", defaultValue = "1") @OverZeroInteger Integer page
 	) {
 		MissionSuccessCode code = MissionSuccessCode.OK;
 		return ApiResponse.onSuccess(
 			code,
-			missionQueryService.findMissionByShop(shopId, cursor, count)
+			missionQueryService.findMissionByShop(shopId, page)
 		);
 	}
 
