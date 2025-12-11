@@ -13,10 +13,12 @@ import com.example.umc9th.domain.member.annotation.ExistMembers;
 import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
 import com.example.umc9th.domain.mission.dto.res.MissionResDto;
+import com.example.umc9th.domain.mission.enums.MissionStatus;
 import com.example.umc9th.domain.mission.exception.code.MissionSuccessCode;
 import com.example.umc9th.domain.mission.service.command.MissionCommandService;
 import com.example.umc9th.domain.mission.service.query.MissionQueryService;
 import com.example.umc9th.domain.shop.annotation.ExistShops;
+import com.example.umc9th.global.annotation.OverZeroInteger;
 import com.example.umc9th.global.apiPayload.ApiResponse;
 
 import jakarta.validation.Valid;
@@ -70,6 +72,20 @@ public class MissionController implements MissionControllerDocs{
 		return ApiResponse.onSuccess(
 			code,
 			missionQueryService.findMissionByShop(shopId, cursor, count)
+		);
+	}
+
+	@Override
+	@GetMapping("/my")
+	public ApiResponse<List<MissionResDto.MyMission>> findMyMission(
+		@RequestParam("member-id") @ExistMembers long memberId,
+		@RequestParam("status") MissionStatus status,
+		@RequestParam(value = "page", defaultValue = "1") @OverZeroInteger Integer page
+	) {
+		MissionSuccessCode code = MissionSuccessCode.OK;
+		return ApiResponse.onSuccess(
+			code,
+			missionQueryService.findMyMission(memberId, status, page)
 		);
 	}
 }

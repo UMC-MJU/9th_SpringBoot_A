@@ -23,4 +23,8 @@ public class MissionConverter {
 	public static MissionResDto.MissionInShop toMissionInShop(Mission mission) {
 		return MissionResDto.MissionInShop.from(mission);
 	}
+
+	public static MissionResDto.MyMission toMyMission(MissionMember missionMember) {
+		return MissionResDto.MyMission.from(missionMember);
+	}
 }
