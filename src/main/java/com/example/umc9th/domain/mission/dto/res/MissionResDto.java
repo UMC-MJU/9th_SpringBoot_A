@@ -13,12 +13,14 @@ public class MissionResDto {
 	@Builder
 	@RequiredArgsConstructor
 	public static class MissionInShop {
+		private final Long missionId;
 		private final String shopName;
 		private final Integer minAmount;
 		private final Integer reward;
 
 		public static MissionInShop from(Mission mission) {
 			return MissionInShop.builder()
+				.missionId(mission.getId())
 				.shopName(mission.getShop().getName())
 				.minAmount(mission.getMinAmount())
 				.reward(mission.getReward())
@@ -30,6 +32,7 @@ public class MissionResDto {
 	@Builder
 	@RequiredArgsConstructor
 	public static class MyMission {
+		private final Long missionMemberId;
 		private final String missionStatus;
 		private final String shopName;
 		private final Integer minAmount;
@@ -37,6 +40,7 @@ public class MissionResDto {
 
 		public static MyMission from(MissionMember missionMember) {
 			return MyMission.builder()
+				.missionMemberId(missionMember.getId())
 				.missionStatus(missionMember.getStatus().toString())
 				.shopName(missionMember.getMission().getShop().getName())
 				.minAmount(missionMember.getMission().getMinAmount())
