@@ -12,10 +12,10 @@ import lombok.Getter;
 public enum MissionSuccessCode implements BaseSuccessCode {
 
 	CREATED(HttpStatus.CREATED,
-		"REVIEW201",
+		"MISSION201",
 		"미션 정보를 성공적으로 추가했습니다."),
 	OK(HttpStatus.OK,
-		"REVIEW200",
+		"MISSION200",
 		"성공적으로 미션 관련 요청을 처리했습니다."),
 	;
 
