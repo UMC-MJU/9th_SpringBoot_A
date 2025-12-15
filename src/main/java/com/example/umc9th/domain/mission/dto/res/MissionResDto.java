@@ -44,4 +44,17 @@ public class MissionResDto {
 				.build();
 		}
 	}
+
+	@Getter
+	@Builder
+	@RequiredArgsConstructor
+	public static class CompleteMission {
+		private final String ownerNum;
+
+		public static CompleteMission from(MissionMember missionMember) {
+			return CompleteMission.builder()
+				.ownerNum(missionMember.getOwnerNum())
+				.build();
+		}
+	}
 }

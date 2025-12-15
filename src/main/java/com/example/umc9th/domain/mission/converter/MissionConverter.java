@@ -27,4 +27,8 @@ public class MissionConverter {
 	public static MissionResDto.MyMission toMyMission(MissionMember missionMember) {
 		return MissionResDto.MyMission.from(missionMember);
 	}
+
+	public static MissionResDto.CompleteMission toCompleteMission(MissionMember missionMember) {
+		return MissionResDto.CompleteMission.from(missionMember);
+	}
 }

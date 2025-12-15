@@ -1,5 +1,7 @@
 package com.example.umc9th.domain.mission.service.command;
 
+import java.security.SecureRandom;
+
 import org.springframework.stereotype.Service;
 
 import com.example.umc9th.domain.member.entity.Member;
@@ -8,8 +10,10 @@ import com.example.umc9th.domain.member.exception.code.MemberErrorCode;
 import com.example.umc9th.domain.member.repository.MemberRepository;
 import com.example.umc9th.domain.mission.converter.MissionConverter;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
+import com.example.umc9th.domain.mission.dto.res.MissionResDto;
 import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.mission.entity.mapping.MissionMember;
+import com.example.umc9th.domain.mission.enums.MissionStatus;
 import com.example.umc9th.domain.mission.exception.MissionException;
 import com.example.umc9th.domain.mission.exception.code.MissionErrorCode;
 import com.example.umc9th.domain.mission.repository.MissionMemberRepository;
@@ -74,5 +78,31 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 
 		MissionMember missionMember = MissionConverter.toMissionMember(mission, member);
 		missionMemberRepository.save(missionMember);
+	}
+
+	@Override
+	public MissionResDto.CompleteMission completeMission(long memberId, long memberMissionId) {
+		MissionMember missionMember = missionMemberRepository.findById(memberMissionId)
+			.orElseThrow(() -> new MissionException(MissionErrorCode.NOT_EXIST_CHALLENGED_MISSION));
+
+		if (missionMember.getMember().getId() != memberId) {
+			throw new MissionException(MissionErrorCode.INVALID_MEMBER_CHALLENGED_MISSION);
+		}
+
+		if (missionMember.getStatus().equals(MissionStatus.COMPLETED)) {
+			throw new MissionException(MissionErrorCode.ALREADY_COMPLETED_MISSION);
+		}
+
+		missionMember.updateStatus(MissionStatus.COMPLETED, generateOwnerNum());
+		missionMemberRepository.save(missionMember);
+
+		return MissionConverter.toCompleteMission(missionMember);
+	}
+
+	private String generateOwnerNum() {
+		SecureRandom random = new SecureRandom();
+		long time = System.currentTimeMillis() % 1_000_000_000_000L; // 12자리
+		int rand = random.nextInt(1000); // 3자리
+		return String.format("%012d%03d", time, rand);
 	}
 }

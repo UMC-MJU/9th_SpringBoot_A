@@ -3,6 +3,7 @@ package com.example.umc9th.domain.mission.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.umc9th.domain.member.annotation.ExistMembers;
+import com.example.umc9th.domain.mission.annotation.ExistMissionMembers;
 import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
 import com.example.umc9th.domain.mission.dto.res.MissionResDto;
@@ -85,6 +87,20 @@ public class MissionController implements MissionControllerDocs{
 		return ApiResponse.onSuccess(
 			code,
 			missionQueryService.findMyMission(memberId, status, page)
+		);
+	}
+
+	@Override
+	@PatchMapping("/complete")
+	public ApiResponse<MissionResDto.CompleteMission> completeMission(
+		@RequestParam("member-id") @ExistMembers long memberId,
+		@RequestParam("mission-member-id") @ExistMissionMembers long memberMissionId
+	) {
+		MissionSuccessCode code = MissionSuccessCode.OK;
+
+		return ApiResponse.onSuccess(
+			code,
+			missionCommandService.completeMission(memberId, memberMissionId)
 		);
 	}
 }

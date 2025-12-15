@@ -2,7 +2,10 @@ package com.example.umc9th.domain.mission.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PatchMapping;
+
 import com.example.umc9th.domain.member.annotation.ExistMembers;
+import com.example.umc9th.domain.mission.annotation.ExistMissionMembers;
 import com.example.umc9th.domain.mission.annotation.ExistMissions;
 import com.example.umc9th.domain.mission.dto.req.MissionReqDto;
 import com.example.umc9th.domain.mission.dto.res.MissionResDto;
@@ -67,5 +70,11 @@ public interface MissionControllerDocs {
 		@ExistMembers long memberId,
 		MissionStatus status,
 		@OverZeroInteger Integer page
+	);
+
+	@PatchMapping
+	ApiResponse<MissionResDto.CompleteMission> completeMission(
+		@ExistMembers long memberId,
+		@ExistMissionMembers long memberMissionId
 	);
 }
