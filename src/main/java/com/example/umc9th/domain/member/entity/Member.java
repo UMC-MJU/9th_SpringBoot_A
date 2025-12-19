@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.example.umc9th.domain.member.enums.Gender;
+import com.example.umc9th.global.auth.enums.Role;
 import com.example.umc9th.global.entity.BaseEntity;
 import com.example.umc9th.global.entity.Location;
 
@@ -78,4 +79,10 @@ public class Member extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "location_id")
 	private Location location;
+
+	@Column(nullable = false)
+	private String password;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
 }
