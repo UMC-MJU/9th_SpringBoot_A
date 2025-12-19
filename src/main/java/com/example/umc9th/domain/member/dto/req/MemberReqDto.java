@@ -39,4 +39,11 @@ public class MemberReqDto {
 		@NotNull
 		String phoneNum
 	){}
+
+	public record LoginDto (
+		@NotBlank
+		String email,
+		@NotBlank
+		String password
+	){}
 }

@@ -10,7 +10,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum MemberErrorCode implements BaseErrorCode {
-	BAD_REQUEST(HttpStatus.BAD_REQUEST, "MEMBER400_1", "해당하는 사용자를 찾을 수 없습니다."),
+	BAD_REQUEST(HttpStatus.BAD_REQUEST,
+		"MEMBER400_1",
+		"해당하는 사용자를 찾을 수 없습니다."),
+	INVALID(HttpStatus.BAD_REQUEST,
+		"MEMBER400_2",
+		"잘못된 비밀번호입니다."),
 	;
 
 	private final HttpStatus status;

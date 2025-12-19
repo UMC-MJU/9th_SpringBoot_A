@@ -1,6 +1,7 @@
 package com.example.umc9th.domain.member.converter;
 
 import com.example.umc9th.domain.member.dto.req.MemberReqDto;
+import com.example.umc9th.domain.member.dto.res.MemberResDto;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.global.auth.enums.Role;
 import com.example.umc9th.global.entity.Location;
@@ -23,6 +24,13 @@ public class MemberConverter {
 			.phoneNum(dto.phoneNum())
 			.detailAddress(dto.detailAddress())
 			.gender(dto.gender())
+			.build();
+	}
+
+	public static MemberResDto.LoginDto toLoginDTO(Member member, String accessToken) {
+		return MemberResDto.LoginDto.builder()
+			.memberId(member.getId())
+			.accessToken(accessToken)
 			.build();
 	}
 }

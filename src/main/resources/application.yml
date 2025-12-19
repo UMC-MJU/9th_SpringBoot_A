@@ -36,3 +36,9 @@ cloud:
     credentials:
       accessKey: ${AWS_ACCESS_KEY_ID}
       secretKey: ${AWS_SECRET_ACCESS_KEY}
+
+jwt:
+  token:
+    secretKey: ZGh3YWlkc2F2ZXdhZXZ3b2EgMTM5ZXUgMDMxdWMyIHEyMiBAIDAgKTJFVio=
+    expiration:
+      access: 14400000
